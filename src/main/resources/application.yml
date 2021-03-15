@@ -4,8 +4,20 @@ spring:
     url: jdbc:mysql://localhost:3306/mockdata?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=GMT
     username: root
     password: 142857
+  application:
+    name: "Mock Server App"
 
 server:
   port: 8090
   servlet:
     context-path: /api
+
+app:
+  name: "Mock Server App"
+  description: "${app.name} is a mock server app for front end develops"
+debug: false
+
+mybatis-plus:
+  global-config:
+    banner: false
+
