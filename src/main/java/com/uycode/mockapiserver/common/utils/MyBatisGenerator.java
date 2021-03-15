@@ -39,7 +39,7 @@ public class MyBatisGenerator {
     //作者名
     private final String author = "ahmatjan";
     //指定生成的表名
-    private final String[] tableNames = new String[]{"sys_user"};
+    private final String[] tableNames = new String[]{"files"};
 
 
     @Test

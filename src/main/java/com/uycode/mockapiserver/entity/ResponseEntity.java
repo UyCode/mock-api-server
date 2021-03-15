@@ -10,28 +10,28 @@ package com.uycode.mockapiserver.entity;
 
 public class ResponseEntity<T> extends BaseEntity {
 
-    private String errno;
+    private String code;
 
-    private String errmsg;
+    private String message;
 
     private T data;
 
     public ResponseEntity() {}
 
-    public String getErrno() {
-        return errno;
+    public String getCode() {
+        return code;
     }
 
-    public void setErrno(String errno) {
-        this.errno = errno;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getErrmsg() {
-        return errmsg;
+    public String getMessage() {
+        return message;
     }
 
-    public void setErrmsg(String errmsg) {
-        this.errmsg = errmsg;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public T getData() {

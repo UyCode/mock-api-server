@@ -25,8 +25,8 @@ public class ResponseUtils {
 
     public static <T> ResponseEntity<T> fail(BusinessException exception) {
         ResponseEntity responseEntity = new ResponseEntity();
-        responseEntity.setErrno(exception.getCode());
-        responseEntity.setErrmsg(exception.getMessage());
+        responseEntity.setCode(exception.getCode());
+        responseEntity.setMessage(exception.getMessage());
         responseEntity.setData("");
         return responseEntity;
     }
@@ -41,8 +41,8 @@ public class ResponseUtils {
 
     public static <T> ResponseEntity<T> success(String message, T t) {
         ResponseEntity<T> result = new ResponseEntity<>();
-        result.setErrno(DEFAULT_SUCCESS_CODE);
-        result.setErrmsg(message);
+        result.setCode(DEFAULT_SUCCESS_CODE);
+        result.setMessage(message);
         result.setData(t);
 
         return result;
