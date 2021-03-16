@@ -23,5 +23,7 @@ public interface UserService extends IService<User> {
 
     User getUserByEmailAndPassword(String email, String password);
 
+    User getUserByEmail(String email);
+
 
 }

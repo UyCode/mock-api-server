@@ -44,9 +44,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         queryWrapper.eq("email", email);
         queryWrapper.eq("password", password);
         User user = userMapper.selectOne(queryWrapper);
-        if(UserStatus.USER_STATUS_BANNED.equals(user.getStatus())) {
+        return user;
+    }
 
-        }
+    @Override
+    public User getUserByEmail(String email){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+
+        queryWrapper.eq("email", email);
+        User user = userMapper.selectOne(queryWrapper);
         return user;
     }
 

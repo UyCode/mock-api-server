@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface FilesService extends IService<Files> {
 
+    void saveFile(Files files);
+
 }

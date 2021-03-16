@@ -5,6 +5,9 @@ import com.uycode.mockapiserver.mapper.FilesMapper;
 import com.uycode.mockapiserver.service.FilesService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -16,5 +19,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class FilesServiceImpl extends ServiceImpl<FilesMapper, Files> implements FilesService {
+
+    @Resource
+    FilesMapper filesMapper;
+
+    @Override
+    public void saveFile(Files files) {
+        filesMapper.insert(files);
+    }
 
 }
