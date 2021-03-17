@@ -1,7 +1,8 @@
 package com.uycode.mockapiserver.service;
 
-import com.uycode.mockapiserver.entity.Files;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.uycode.mockapiserver.entity.Files;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * <p>
@@ -13,6 +14,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface FilesService extends IService<Files> {
 
-    void saveFile(Files files);
+    boolean saveFile(String userEmail, MultipartFile[] files);
 
 }
