@@ -16,4 +16,8 @@
         id, user_id, file_path, file_name, file_status
     </sql>
 
+    <!--<select id="getFilesByUserId" resultType="com.uycode.mockapiserver.entity.Files">
+    select distinct * from files where userId = ${userId};
+    </select>-->
+
 </mapper>

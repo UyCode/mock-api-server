@@ -1,7 +1,7 @@
 package com.uycode.mockapiserver.mapper;
 
-import com.uycode.mockapiserver.entity.Files;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.uycode.mockapiserver.entity.Files;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -17,4 +17,10 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface FilesMapper extends BaseMapper<Files> {
 
+    /**
+     * 根据userId获取附件
+     * @param userId
+     * return
+     * */
+    //List<Files> getFilesByUserId(@Param("userId") int userId);
 }

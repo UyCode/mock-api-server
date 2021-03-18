@@ -1,5 +1,6 @@
 package com.uycode.mockapiserver.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.uycode.mockapiserver.common.exception.MessageException;
 import com.uycode.mockapiserver.dto.UserFileDto;
@@ -9,11 +10,13 @@ import com.uycode.mockapiserver.mapper.FilesMapper;
 import com.uycode.mockapiserver.service.FilesService;
 import com.uycode.mockapiserver.service.UserService;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.io.File;
+import java.util.List;
 
 /**
  * <p>
@@ -74,11 +77,23 @@ public class FilesServiceImpl extends ServiceImpl<FilesMapper, Files> implements
                 userFileDto.setFileStatus(files.getFileStatus());
                 filesMapper.insert(files);
             } catch (Exception e) {
-                log.error("无法上传文件");
+                log.error("无法上传文件：", e);
                 throw new MessageException(e.getMessage());
             }
         }
         return true;
+    }
+
+    @Override
+    public List<Files> getFilesByUserId(int userId) {
+        QueryWrapper<Files> queryWrapper = new QueryWrapper();
+        queryWrapper.eq("user_id", userId);
+
+        List<Files> files = filesMapper.selectList(queryWrapper);
+        if (ObjectUtils.isEmpty(files)) {
+            throw new MessageException("用户没有附件信息");
+        }
+        return files;
     }
 
 }

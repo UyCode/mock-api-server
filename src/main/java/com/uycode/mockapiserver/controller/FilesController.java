@@ -2,10 +2,13 @@ package com.uycode.mockapiserver.controller;
 
 import com.uycode.mockapiserver.common.utils.ResponseUtils;
 import com.uycode.mockapiserver.entity.ResponseEntity;
+import com.uycode.mockapiserver.entity.User;
 import com.uycode.mockapiserver.service.FilesService;
 import com.uycode.mockapiserver.service.UserService;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,6 +43,22 @@ public class FilesController {
             return ResponseUtils.fail("无法获取用户信息");
         }
         return ResponseUtils.success(filesService.saveFile(userEmail, files));
+
+    }
+
+    @PostMapping("/getFiles")
+    public ResponseEntity<?> getFiles(@RequestBody User user) {
+
+        String userEmail = user.getEmail();
+        if (ObjectUtils.isEmpty(userEmail)) {
+            return ResponseUtils.fail("用户账户不存在");
+        }
+        User user1 = userService.getUserByEmail(user.getEmail());
+        if (ObjectUtils.isEmpty(user1)) {
+            return ResponseUtils.fail("无法获取用户信息");
+        }
+
+        return ResponseUtils.success(filesService.getFilesByUserId(user1.getId()));
 
     }
 
